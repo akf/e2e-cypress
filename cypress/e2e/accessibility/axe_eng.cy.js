@@ -3,13 +3,13 @@ const subpaths = require('../../fixtures/subpaths.json')
 
 describe('Validate 508 accessibility compliance on English site', () =>{
   subpaths.eng.forEach((subpath) => {
-    it(`Run axe core http://localhost/${subpath}`, () => {
-      cy.visit(`http://localhost/${subpath}`, {failOnStatusCode: false})
+    it(`Run axe core baseUrl/${subpath}`, () => {
+      cy.visit(`/${subpath}`, {failOnStatusCode: false})
       cy.injectAxe()
 
       // Expand sitewide banner accordion
       cy.get('[class="usa-banner__button-text"]').click()
-      
+
       cy.configureAxe({
           runOnly: {
               values: ['wcag2aa']
@@ -18,10 +18,10 @@ describe('Validate 508 accessibility compliance on English site', () =>{
 
       cy.task(
           'log',
-          `Run axe core http://localhost/${subpath}`
+          `Run axe core baseUrl/${subpath}`
       )
       cy.checkA11y(
-        null, 
+        null,
         // Only detects critical errors
         /*{
           includedImpacts: ['critical']

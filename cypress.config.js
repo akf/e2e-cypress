@@ -7,7 +7,7 @@ module.exports = defineConfig({
   video: false,
   screenshotOnRunFailure: true,
   e2e: {
-    baseUrl: 'http://localhost',
+      baseUrl: 'http://cms-usagov.docker.local',
     viewportWidth: 1280,
     viewportHeight: 800,
     "retries": {
